@@ -6,10 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var index = require('./routes/index');
-var users = require('./routes/user/user.js');
+var users = require('./routes/user/user');
+var album = require('./routes/album/image');
+var multipart = require('connect-multiparty');
+
 
 var app = express();
-
+app.use(multipart());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -24,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/', users);
-//app.use('/',projectlisting);
+app.use('/',album);
 
 
 // catch 404 and forward to error handler

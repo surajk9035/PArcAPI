@@ -7,7 +7,7 @@ module.exports = {
             query = dbconfig.msql.format(query, table);
             dbconfig.connection.query(query, function (err, rows) {
                 if (err) {
-                    res.json({"status": "failure", "data": err});
+                    res.json({"status": "failure", "data": "Error executing MySQL query"});
                 } else {
                     res.json({"status": "Success", "data":{"modules":{ "module": rows }}});
             }
